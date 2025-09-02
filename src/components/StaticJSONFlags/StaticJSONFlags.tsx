@@ -1,9 +1,9 @@
 import { useFlag } from "@openfeature/react-sdk";
 
 const NEW_MESSAGE_FLAG = "new-message";
-export const InMemoryFlags = () => {
-  const { value: showNewMessage } = useFlag(NEW_MESSAGE_FLAG, false);
 
+export const StaticJSONFlags = () => {
+  const { value: showNewMessage } = useFlag(NEW_MESSAGE_FLAG, false);
   const flagStatusText = `${NEW_MESSAGE_FLAG} flag: ${
     showNewMessage ? "Enabled" : "Disabled"
   }`;
@@ -11,7 +11,7 @@ export const InMemoryFlags = () => {
 
   return (
     <div style={{ border: "1px solid", padding: "10px" }}>
-      <h2>In-Memory</h2>
+      <h2>Static JSON Flags</h2>
       <div>
         <p>{flagStatusText}</p>
       </div>
@@ -19,7 +19,7 @@ export const InMemoryFlags = () => {
         <p>{flagValueText}</p>
       </div>
       {showNewMessage && (
-        <h4 style={{ color: "green" }}>New Message from in-memory! :)</h4>
+        <h3 style={{ color: "green" }}>New Message from Static JSON! :)</h3>
       )}
     </div>
   );

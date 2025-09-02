@@ -1,0 +1,12 @@
+{
+  "flags": {
+    "new-message": {
+      "state": "ENABLED",
+      "defaultVariant": "on",
+      "variants": {
+        "on": true,
+        "off": false
+      }
+    }
+  }
+}
