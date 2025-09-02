@@ -26,7 +26,7 @@ This project demonstrates three different OpenFeature providers:
    npm install
    ```
 
-2. Start the flagd provider (optional):
+2. Start the flagd provider:
 
    ```bash
    cd flagd-provider
