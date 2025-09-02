@@ -1,69 +1,54 @@
-# React + TypeScript + Vite
+# OpenFeature with React, OpenTelemetry and Dynatrace [WIP]
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A work-in-progress showcase of OpenFeature integration with React, demonstrating different feature flag providers and their connection to the Dynatrace platform.
 
-Currently, two official plugins are available:
+## Current Implementation (placeholder UI!)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+This project demonstrates three different OpenFeature providers:
 
-## Expanding the ESLint configuration
+1. **In-Memory Provider** - Feature flags stored in memory
+2. **Static JSON Provider** - Feature flags loaded from a static JSON file
+3. **Flagd Provider** - Feature flags served from a flagd instance running in Docker
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Project Structure
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- `src/components/InMemoryFlags/` - In-memory provider example
+- `src/components/StaticJSONFlags/` - Static JSON provider example
+- `src/components/FlagdFlags/` - Flagd provider example
+- `flagd-provider/` - Docker configuration for flagd
+- `src/openFeature/providers/` - Custom provider implementations
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+## Getting Started
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+1. Install dependencies:
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+   ```bash
+   npm install
+   ```
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+2. Start the flagd provider (optional):
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+   ```bash
+   cd flagd-provider
+   docker-compose up -d
+   ```
+
+3. Run the development server:
+   ```bash
+   npm run dev
+   ```
+
+## Roadmap
+
+- [ ] Complete OpenTelemetry integration
+- [ ] Connect to Dynatrace platform
+- [ ] Replace placeholder UI with a more polished one
+
+## Technologies Used
+
+- React 19
+- OpenFeature SDK
+- Flagd
+- OpenTelemetry
+- TypeScript
+- Vite

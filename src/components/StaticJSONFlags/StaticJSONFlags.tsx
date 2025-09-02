@@ -19,7 +19,7 @@ export const StaticJSONFlags = () => {
         <p>{flagValueText}</p>
       </div>
       {showNewMessage && (
-        <h3 style={{ color: "green" }}>New Message from Static JSON! :)</h3>
+        <h4 style={{ color: "green" }}>New Message from Static JSON! :)</h4>
       )}
     </div>
   );

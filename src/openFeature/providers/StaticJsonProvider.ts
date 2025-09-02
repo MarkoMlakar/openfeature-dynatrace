@@ -27,7 +27,7 @@ export class StaticJsonProvider implements Provider {
   config: StaticJsonConfig | null = null;
   status?: ClientProviderStatus | undefined;
 
-  async initialize?(context?: EvaluationContext): Promise<void> {
+  async initialize?(_context?: EvaluationContext): Promise<void> {
     try {
       const { default: staticJsonConfig } = await import(
         "./staticJsonFlags.json"
@@ -62,7 +62,7 @@ export class StaticJsonProvider implements Provider {
   resolveBooleanEvaluation(
     flagKey: string,
     defaultValue: boolean,
-    context: EvaluationContext,
+    _context: EvaluationContext,
     logger: Logger
   ): ResolutionDetails<boolean> {
     if (!this.config) {
@@ -99,40 +99,40 @@ export class StaticJsonProvider implements Provider {
   }
 
   onContextChange?(
-    oldContext: EvaluationContext,
-    newContext: EvaluationContext
+    _oldContext: EvaluationContext,
+    _newContext: EvaluationContext
   ): Promise<void> | void {
     throw new Error("Method not implemented.");
   }
 
   resolveNumberEvaluation(
-    flagKey: string,
-    defaultValue: number,
-    context: EvaluationContext,
-    logger: Logger
+    _flagKey: string,
+    _defaultValue: number,
+    _context: EvaluationContext,
+    _logger: Logger
   ): ResolutionDetails<number> {
     throw new Error("Method not implemented.");
   }
   resolveObjectEvaluation<T extends JsonValue>(
-    flagKey: string,
-    defaultValue: T,
-    context: EvaluationContext,
-    logger: Logger
+    _flagKey: string,
+    _defaultValue: T,
+    _context: EvaluationContext,
+    _logger: Logger
   ): ResolutionDetails<T> {
     throw new Error("Method not implemented.");
   }
   track?(
-    trackingEventName: string,
-    context: EvaluationContext,
-    trackingEventDetails: TrackingEventDetails
+    _trackingEventName: string,
+    _context: EvaluationContext,
+    _trackingEventDetails: TrackingEventDetails
   ): void {
     throw new Error("Method not implemented.");
   }
   resolveStringEvaluation(
-    flagKey: string,
-    defaultValue: string,
-    context: EvaluationContext,
-    logger: Logger
+    _flagKey: string,
+    _defaultValue: string,
+    _context: EvaluationContext,
+    _logger: Logger
   ): ResolutionDetails<string> {
     throw new Error("Method not implemented.");
   }
