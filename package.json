@@ -12,10 +12,14 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@chakra-ui/react": "^3.26.0",
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
     "@openfeature/flagd-web-provider": "^0.7.3",
     "@openfeature/react-sdk": "^1.0.1",
     "@opentelemetry/context-zone": "^2.0.1",
     "@opentelemetry/sdk-trace-web": "^2.0.1",
+    "framer-motion": "^12.23.12",
     "react": "^19.1.1",
     "react-dom": "^19.1.1"
   },
@@ -23,6 +27,8 @@
     "@eslint/js": "^9.33.0",
     "@types/express": "^5.0.0",
     "@types/node": "^22.10.2",
+    "@types/react": "^19.1.12",
+    "@types/react-dom": "^19.1.9",
     "@vitejs/plugin-react-swc": "^4.0.0",
     "concurrently": "^8.2.2",
     "cors": "^2.8.5",

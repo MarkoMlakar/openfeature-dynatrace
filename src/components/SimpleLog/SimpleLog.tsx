@@ -1,9 +1,15 @@
 import { useState } from "react";
+import { Box, Text, Button, HStack, Alert, Badge } from "@chakra-ui/react";
 import type { DynatraceLogData } from "../../types/LogData";
 
 const apiToken = import.meta.env.VITE_DYNATRACE_API_TOKEN;
 
-export const SimpleLog = () => {
+interface SimpleLogProps {
+  flagKey: string;
+  isFlagEnabled: boolean;
+}
+
+export const SimpleLog = ({ flagKey, isFlagEnabled }: SimpleLogProps) => {
   const [isLoading, setIsLoading] = useState(false);
   const [result, setResult] = useState<string>("");
 
@@ -57,27 +63,52 @@ export const SimpleLog = () => {
   };
 
   return (
-    <div style={{ padding: "20px", border: "1px solid #ccc", margin: "20px" }}>
-      <h3>Simple Dynatrace Log</h3>
-      <p>Click the button to send one log to Dynatrace:</p>
-      <button
-        onClick={sendLog}
-        style={{
-          padding: "10px 20px",
-          backgroundColor: "blue",
-        }}
-      >
-        {isLoading ? "Sending..." : "Send Log to Dynatrace"}
-      </button>
+    <Box
+      p={4}
+      borderWidth="1px"
+      borderRadius="md"
+      bg="blue.50"
+      borderColor="blue.200"
+      mt={3}
+    >
+      <Text fontWeight="semibold" color="blue.600" minW="120px">
+        Test connection to Dynatrace
+      </Text>
+      <HStack justify="flex-start" align="center" gap={2} wrap="wrap">
+        <Badge colorPalette="purple" variant="outline">
+          {flagKey}
+        </Badge>
+
+        <Badge colorPalette={isFlagEnabled ? "green" : "red"}>
+          {isFlagEnabled ? "Enabled" : "Disabled"}
+        </Badge>
+
+        <Text fontSize="sm" color="gray.600">
+          Value: {isFlagEnabled.toString()}
+        </Text>
+
+        <Button onClick={sendLog} size="sm" backgroundColor="blue.600">
+          {isLoading ? "Sending..." : "Send Log to Dynatrace"}
+        </Button>
+      </HStack>
+
+      <Text fontSize="xs" color="gray.500" mb={2}>
+        This component is controlled by the "dynatrace-simple-log" feature flag
+      </Text>
+
       {result && (
-        <div
-          style={{
-            marginTop: "10px",
-          }}
-        >
-          {result}
-        </div>
+        <Box mt={3}>
+          <Alert.Root
+            status={result.includes("Error") ? "error" : "success"}
+            size="sm"
+          >
+            <Alert.Indicator />
+            <Alert.Content>
+              <Alert.Title>{result}</Alert.Title>
+            </Alert.Content>
+          </Alert.Root>
+        </Box>
       )}
-    </div>
+    </Box>
   );
 };

@@ -16,9 +16,11 @@ The application sends feature flag change events to Dynatrace, allowing you to m
 
 This project demonstrates three different OpenFeature providers:
 
-1. **In-Memory Provider** - Feature flags stored in memory
+1. **Static In-Memory Provider** - Feature flags stored in memory
 2. **Static JSON Provider** - Feature flags loaded from a static JSON file
-3. **Flagd Provider** - Feature flags served from a flagd instance running in Docker
+3. **Flagd Provider** - Feature flags served from a flagd instance running in Docker which can be toggled with a button click
+
+   All the flag changes are being reported to Dynatrace with the use of OpenTelemetry.
 
 ## Project Structure
 
@@ -72,3 +74,6 @@ This project demonstrates three different OpenFeature providers:
 - TypeScript 5.8.3
 - Vite 7.1.4
 - Node.js + Express 4.21.2 (Proxy Server - handles CORS and forwards logs to Dynatrace)
+- Chakra UI 3.0 (UI Component Library)
+
+<img src="client-app.png" alt="Client App" style="width: 600px; height: 600px; object-fit: cover; display: block; margin: 0 auto;">
