@@ -1,4 +1,5 @@
 import { useState } from "react";
+import type { DynatraceLogData } from "../../types/LogData";
 
 const apiToken = import.meta.env.VITE_DYNATRACE_API_TOKEN;
 
@@ -14,17 +15,20 @@ export const SimpleLog = () => {
       // Use proxy to avoid CORS issues
       const endpoint = "http://localhost:3001/api/v2/logs/ingest";
 
-      // Create log data
-      const logData = {
+      // Create log data using the DynatraceLogData interface
+      const logData: DynatraceLogData = {
         content:
           "Button clicked in React app to make a simple log to Dynatrace",
-        "log.source": "react-app",
         timestamp: new Date().toISOString(),
+        severity: "info",
+        "feature.flag.name": "simple-log-test",
+        "feature.flag.previous_value": "unknown",
+        "feature.flag.current_value": "clicked",
+        "feature.flag.variant": "default",
+        "context.targeting_key": "simple-log-user",
+        "log.source": "react-app",
         "service.name": "open-feature-dynatrace",
-        loglevel: "INFO",
         operation: "button_click",
-        "user.action": "button_click",
-        "component.name": "SimpleLog",
       };
 
       // Send to Dynatrace
@@ -34,7 +38,7 @@ export const SimpleLog = () => {
           "Content-Type": "application/json",
           Authorization: `Api-Token ${apiToken}`,
         },
-        body: JSON.stringify(logData),
+        body: JSON.stringify([logData]), // Wrap in array as Dynatrace expects
       });
 
       if (response.ok) {

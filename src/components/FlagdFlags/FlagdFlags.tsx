@@ -4,9 +4,9 @@ import {
   useSuspenseFlag,
 } from "@openfeature/react-sdk";
 import { Suspense } from "react";
-import { SimpleLog } from "../../SimpleLog";
+import { SimpleLog } from "../SimpleLog/SimpleLog";
 
-const NEW_MESSAGE_FLAG = "new-message";
+const NEW_MESSAGE_FLAG = "new-message-flagd";
 const SIMPLE_LOG_FLAG = "dynatrace-simple-log";
 
 const FlagdFallbackContent = () => {

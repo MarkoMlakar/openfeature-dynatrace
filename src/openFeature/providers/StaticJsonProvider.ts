@@ -3,6 +3,7 @@ import {
   JsonValue,
   Provider,
   TrackingEventDetails,
+  StandardResolutionReasons,
   type EvaluationContext,
   type Logger,
   type Paradigm,
@@ -71,7 +72,7 @@ export class StaticJsonProvider implements Provider {
       );
       return {
         value: defaultValue,
-        reason: "PROVIDER_NOT_READY",
+        reason: StandardResolutionReasons.UNKNOWN,
       };
     }
 
@@ -80,20 +81,30 @@ export class StaticJsonProvider implements Provider {
       logger.warn(`Flag not found: ${flagKey}, returning default value`);
       return {
         value: defaultValue,
-        reason: "FLAG_NOT_FOUND",
+        reason: StandardResolutionReasons.DEFAULT,
+      };
+    }
+
+    if (flagConfig.state === "DISABLED") {
+      logger.info(`Flag ${flagKey} is disabled, returning default value`);
+      return {
+        value: defaultValue,
+        reason: StandardResolutionReasons.DISABLED,
+        variant: flagConfig.defaultVariant,
       };
     }
 
     const variantValue = flagConfig.variants[flagConfig.defaultVariant];
-
     const booleanValue =
       typeof variantValue === "boolean" ? variantValue : defaultValue;
 
-    logger.info(`Flag ${flagKey} resolved to: ${booleanValue}`);
+    logger.info(
+      `Flag ${flagKey} resolved to: ${booleanValue} (variant: ${flagConfig.defaultVariant})`
+    );
 
     return {
       value: booleanValue,
-      reason: "DEFAULT",
+      reason: StandardResolutionReasons.STATIC,
       variant: flagConfig.defaultVariant,
     };
   }
@@ -102,7 +113,7 @@ export class StaticJsonProvider implements Provider {
     _oldContext: EvaluationContext,
     _newContext: EvaluationContext
   ): Promise<void> | void {
-    throw new Error("Method not implemented.");
+    // flags are evaluated statically based on the JSON config
   }
 
   resolveNumberEvaluation(
