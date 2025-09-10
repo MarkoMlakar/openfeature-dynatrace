@@ -1,8 +1,12 @@
-# OpenFeature with React, OpenTelemetry and Dynatrace [WIP]
+# OpenFeature with React, OpenTelemetry and Dynatrace [Work in progress]
 
-A work-in-progress showcase of OpenFeature integration with React, demonstrating different feature flag providers and their connection to the Dynatrace platform.
+## Purpose
 
-## Current Implementation (placeholder UI!)
+This repository showcases how to use OpenFeature and OpenTelemetry SDK in a React frontend application to send feature flag data to Dynatrace, where you can observe and monitor the changes in real-time.
+
+A demonstration of OpenFeature integration with React, showing different feature flag providers and their connection to the Dynatrace platform for observability and monitoring.
+
+## Implementation
 
 This project demonstrates three different OpenFeature providers:
 
@@ -12,43 +16,59 @@ This project demonstrates three different OpenFeature providers:
 
 ## Project Structure
 
-- `src/components/InMemoryFlags/` - In-memory provider example
-- `src/components/StaticJSONFlags/` - Static JSON provider example
-- `src/components/FlagdFlags/` - Flagd provider example
+- `src/components/` - React components for each provider
+- `src/openFeature/` - Custom providers and hooks
 - `flagd-provider/` - Docker configuration for flagd
-- `src/openFeature/providers/` - Custom provider implementations
+- `proxy/` - Local proxy server for development
 
 ## Getting Started
 
-1. Install dependencies:
+1. **Create environment configuration:**
+
+   Create a `.env` file in the root directory with your Dynatrace credentials:
+
+   ```bash
+   VITE_DYNATRACE_ENDPOINT=https://your-environment-id.live.dynatrace.com/api/v2/logs/ingest
+   VITE_DYNATRACE_API_TOKEN=your-dynatrace-api-token
+   ```
+
+2. **Install dependencies:**
 
    ```bash
    npm install
    ```
 
-2. Start the flagd provider:
+3. **Start the flagd provider:**
 
    ```bash
    cd flagd-provider
    docker-compose up -d
    ```
 
-3. Run the development server:
+4. **Run the development server with proxy:**
    ```bash
-   npm run dev
+   npm run dev:full
    ```
 
 ## Roadmap
 
-- [ ] Complete OpenTelemetry integration
-- [ ] Connect to Dynatrace platform
+- [x] Complete OpenTelemetry integration
+- [x] Connect to Dynatrace platform
 - [ ] Replace placeholder UI with a more polished one
 
 ## Technologies Used
 
-- React 19
-- OpenFeature SDK
-- Flagd
-- OpenTelemetry
-- TypeScript
-- Vite
+- React 19.1.1
+- OpenFeature React SDK 1.0.1
+- OpenFeature Flagd Web Provider 0.7.3
+- Flagd 0.12.9 (Docker)
+- OpenTelemetry SDK 2.0.1
+- TypeScript 5.8.3
+- Vite 7.1.4
+- Node.js + Express 4.21.2 (Proxy Server - handles CORS and forwards logs to Dynatrace)
+
+## Dynatrace Integration
+
+The application sends feature flag change events to Dynatrace, allowing you to monitor and observe flag state changes in real-time through the Dynatrace Logs interface.
+
+![Dynatrace Feature Flags Logs](dynatrace-feature-flags-logs.png)
