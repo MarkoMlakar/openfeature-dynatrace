@@ -1,6 +1,6 @@
 import { useFlag } from "@openfeature/react-sdk";
 
-const NEW_MESSAGE_FLAG = "new-message";
+const NEW_MESSAGE_FLAG = "new-message-in-memory";
 export const InMemoryFlags = () => {
   const { value: showNewMessage } = useFlag(NEW_MESSAGE_FLAG, false);
 

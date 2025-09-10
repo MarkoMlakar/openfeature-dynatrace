@@ -1,6 +1,6 @@
 {
   "flags": {
-    "new-message": {
+    "new-message-static-json": {
       "state": "ENABLED",
       "defaultVariant": "on",
       "variants": {
