@@ -6,6 +6,12 @@ This repository showcases how to use OpenFeature and OpenTelemetry SDK in a Reac
 
 A demonstration of OpenFeature integration with React, showing different feature flag providers and their connection to the Dynatrace platform for observability and monitoring.
 
+## Dynatrace Integration
+
+The application sends feature flag change events to Dynatrace, allowing you to monitor and observe flag state changes in real-time through the Dynatrace Logs interface.
+
+![Dynatrace Feature Flags Logs](dynatrace-feature-flags-logs.png)
+
 ## Implementation
 
 This project demonstrates three different OpenFeature providers:
@@ -66,9 +72,3 @@ This project demonstrates three different OpenFeature providers:
 - TypeScript 5.8.3
 - Vite 7.1.4
 - Node.js + Express 4.21.2 (Proxy Server - handles CORS and forwards logs to Dynatrace)
-
-## Dynatrace Integration
-
-The application sends feature flag change events to Dynatrace, allowing you to monitor and observe flag state changes in real-time through the Dynatrace Logs interface.
-
-![Dynatrace Feature Flags Logs](dynatrace-feature-flags-logs.png)
