@@ -60,6 +60,7 @@ This project demonstrates three different OpenFeature providers:
 
 ## Roadmap
 
+- [x] Complete OpenFeature integration
 - [x] Complete OpenTelemetry integration
 - [x] Connect to Dynatrace platform
 - [ ] Replace placeholder UI with a more polished one
