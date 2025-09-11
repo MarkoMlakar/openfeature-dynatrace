@@ -20,8 +20,6 @@ This project demonstrates three different OpenFeature providers:
 2. **Static JSON Provider** - Feature flags loaded from a static JSON file
 3. **Flagd Provider** - Feature flags served from a flagd instance running in Docker which can be toggled with a button click
 
-   All the flag changes are being reported to Dynatrace with the use of OpenTelemetry.
-
 ## Project Structure
 
 - `src/components/` - React components for each provider
@@ -61,7 +59,7 @@ This project demonstrates three different OpenFeature providers:
 ## Roadmap
 
 - [x] Complete OpenFeature integration
-- [x] Complete OpenTelemetry integration
+- [ ] Complete OpenTelemetry integration
 - [x] Connect to Dynatrace platform
 - [ ] Replace placeholder UI with a more polished one
 
